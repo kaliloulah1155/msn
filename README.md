@@ -1,1 +1,1 @@
-pinia + vue3 + pinia persist + router 
+api msn  
