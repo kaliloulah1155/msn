@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\SongController;
+use App\Http\Controllers\API\SongsByUserController;
 
 
 Route::post('register',[AuthController::class,'register']);
@@ -19,6 +20,9 @@ Route::middleware('auth:sanctum')->group(function(){
 
      Route::post('songs',[SongController::class,'store']);
      Route::delete('songs/{id}/{user_id}',[SongController::class,'destroy']);
+
+     Route::post('user/{user_id}/songs',[SongsByUserController::class,'index']);
+
       
 
 });
