@@ -6,6 +6,8 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\SongController;
 use App\Http\Controllers\API\SongsByUserController;
+use App\Http\Controllers\API\YoutubeController;
+use App\Http\Controllers\API\PostController;
 
 
 Route::post('register',[AuthController::class,'register']);
@@ -21,8 +23,15 @@ Route::middleware('auth:sanctum')->group(function(){
      Route::post('songs',[SongController::class,'store']);
      Route::delete('songs/{id}/{user_id}',[SongController::class,'destroy']);
 
+     Route::get('youtube/{user_id}',[YoutubeController::class,'show']);
+     Route::post('youtube',[YoutubeController::class,'store']);
+     Route::delete('youtube/{id}',[YoutubeController::class,'destroy']);
+
      Route::post('user/{user_id}/songs',[SongsByUserController::class,'index']);
 
-      
-
+     Route::get('posts',[PostController::class,'index']);
+     Route::get('posts/{id}',[PostController::class,'show']);
+     Route::post('posts',[PostController::class,'store']);
+     Route::put('posts/{id}',[PostController::class,'update']);
+     Route::delete('posts/{id}',[PostController::class,'destroy']);
 });
