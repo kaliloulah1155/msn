@@ -19,7 +19,7 @@ class PostController extends Controller
     public function index()
     {
         try {
-            $postsPerPage = 10;
+            $postsPerPage = 1;
             $post = Post::with('user')
                 ->orderBy('updated_at', 'desc')
                 ->simplePaginate($postsPerPage);
@@ -48,7 +48,7 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         try {
-
+             
             if ($request->hasFile('image') === false) {
                 return response()->json(['error' => 'There is no image to upload'], 400);
             }
@@ -83,7 +83,7 @@ class PostController extends Controller
              
             $post = Post::with('user')->findOrFail($id);
 
-            return response()->json(['post' => $post], 200);
+            return response()->json($post, 200);
         } catch (\Exception$e) {
             return response()->json([
                 'message' => 'Something went wrong in PostController.show',
